@@ -18,6 +18,12 @@ describe('saving records', function () {
         done();
     });
 
+    // drop (delete) dog collection used for testing *before each test*
+    beforeEach(function(done){
+       mongoose.connection.collections.dogtypes.drop()
+       .then(done());
+    });
+
     // create tests
     it('saves a new dog in the db', function (done) {
         let dog = new DogModel({
