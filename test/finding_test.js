@@ -5,6 +5,7 @@ describe('Finding records', function () {
 
     let newDog;
 
+    // before each test, create a new instance of DogModel
     beforeEach(function (done) {
         newDog = new DogModel({
             name: 'Celina',
@@ -21,26 +22,22 @@ describe('Finding records', function () {
 
     it('Finds one record in the db', function (done) {
         // find & findOne are asynchronous, therefore require resolving a response with .then
-
         DogModel.findOne({breed: 'mixed'})
             .then(function (res) {
                 assert(res.breed === 'mixed');
             })
             .catch(err => console.error(err));
-
-        done();
+            done();
     });
 
 
     it('Finds one record in the db by id', function (done) {
         // find & findOne are asynchronous, therefore require resolving a response with .then
-
         DogModel.findOne({_id: newDog._id})
             .then(function (res) {
                 assert(res._id.toString() === newDog._id.toString());
             })
             .catch(err => console.error(err));
-
         done();
     });
 
